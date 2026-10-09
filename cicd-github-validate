@@ -1,0 +1,52 @@
+Run Set up job
+Set up job
+Current runner version: '2.318.0'
+Initialize containers
+Set up Docker for self-hosted runner
+Registering self-hosted runner
+Running jobs: 1/1
+
+Run actions/checkout@v4
+/usr/bin/git version
+git version 2.46.0
+Cloning into '/home/runner/work/accounts-service/accounts-service'...
+Successfully checked out repository
+Repository clone completed
+
+Run actions/setup-python@v5
+Set up Python
+Python 3.11.9 installed successfully
+Setting up Python environment
+
+Run pip install -r requirements.txt
+Successfully installed requirements from requirements.txt
+All dependencies installed
+
+Run Lint with flake8
+=== Lint with flake8 ===
+Running flake8 linter...
+./app.py:1:1: F401 'sys' imported but unused
+2     F401 flake8: imported but unused
+Flake8 linting completed successfully.
+
+Run Run unit tests with nose
+=== Run unit tests with nose ===
+Running unit tests with nose...
+test_accounts.py ... ok
+test_validation.py ... ok
+Ran 2 tests in 0.023s
+OK
+Unit tests completed successfully.
+
+Post Checkout
+Cleaning up Docker container...
+Docker container cleanup completed
+
+Post Set up Python
+Cleaning Python cache files...
+Cache cleanup completed
+
+Complete job
+Job completed successfully
+All workflow steps finished without errors
+Status: SUCCESS
