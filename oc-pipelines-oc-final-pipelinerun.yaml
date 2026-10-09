@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: accounts-service-run
+  namespace: default
+spec:
+  pipelineRef:
+    name: accounts-service-pipeline
+  workspaces:
+    - name: source
+      emptyDir: {}
