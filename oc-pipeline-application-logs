@@ -1,0 +1,10 @@
+2026-10-09 08:42:15 INFO  Starting OpenShift application container
+2026-10-09 08:42:18 INFO  Loading environment variables
+2026-10-09 08:42:20 INFO  Checking dependency health
+2026-10-09 08:42:22 INFO  SERVICERUNNING
+2026-10-09 08:42:23 INFO  Application listening on port 8000
+2026-10-09 08:42:24 INFO  Ready to accept requests
+2026-10-09 08:42:25 INFO  Health check passed
+2026-10-09 08:42:26 INFO  Request processing started
+2026-10-09 08:42:30 INFO  Service is responding successfully on port 8000
+2026-10-09 08:42:35 INFO  Shutting down cleanly
