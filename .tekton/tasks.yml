@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup-task
+  namespace: default
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: cleanup
+      image: python:3.11
+      workingDir: $(workspaces.source.path)
+      script: |
+        echo "=== Cleanup Task Started ==="
+        echo "Cleaning workspace..."
+        rm -rf .pytest_cache || true
+        find . -type d -name "__pycache__" -exec rm -rf {} + || true
+        find . -type f -name "*.pyc" -delete || true
+        echo "Workspace cleaned successfully."
+        echo "=== Cleanup Task Completed ==="
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: nose-test-task
+  namespace: default
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: install-test-dependencies
+      image: python:3.11
+      workingDir: $(workspaces.source.path)
+      script: |
+        echo "Installing test dependencies..."
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install nose
+
+    - name: run-nose-tests
+      image: python:3.11
+      workingDir: $(workspaces.source.path)
+      script: |
+        echo "=== Nose Testing Task Started ==="
+        echo "Running unit tests with nose..."
+        nosetests -v
+        echo "Unit tests completed successfully."
+        echo "=== Nose Testing Task Completed ==="
